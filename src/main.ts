@@ -1,3 +1,5 @@
+import * as path from 'path';
+import { createFS } from '@banez/fs';
 import type { BCMSClient } from '@becomes/cms-client/types';
 import { createBcmsMost } from '@becomes/cms-most';
 import type { BCMSMost } from '@becomes/cms-most/types';
@@ -34,6 +36,17 @@ export function createBcmsApiHandler<
 export function createBcmsNextPlugin(): BCMSNextPlugin {
   if (!nextPlugin) {
     const bcmsMost = createBcmsMost();
+    const fs = createFS({
+      base: process.cwd(),
+    });
+    fs.exist('bcms.routes.js', true).then(async (result) => {
+      if (result) {
+        const routes = await import(path.join(process.cwd(), 'bcms.routes.js'));
+        // eslint-disable-next-line no-console
+        console.log(routes);
+        bcmsMost.server.start(routes);
+      }
+    });
     bcmsMost.socketConnect().catch((err) => {
       // eslint-disable-next-line no-console
       console.error(err);
