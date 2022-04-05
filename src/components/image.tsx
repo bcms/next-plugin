@@ -49,7 +49,7 @@ const BCMSImage: FC<Props> = ({ media, options, className, id, style }) => {
           <source srcSet={'/api' + srcSet[1]} />
           <img
             data-bcms-image={handler.optionString + ';' + media.src}
-            src={media.src}
+            src={output + media.src}
             alt={media.alt_text}
             width={srcSet[2]}
             height={srcSet[3]}
