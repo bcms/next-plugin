@@ -50,8 +50,6 @@ export function createBcmsNextPlugin(): BCMSNextPlugin {
     fs.exist('bcms.routes.js', true).then(async (result) => {
       if (result) {
         const routes = await import(path.join(process.cwd(), 'bcms.routes.js'));
-        // eslint-disable-next-line no-console
-        console.log(routes);
         bcmsMost.server.start(routes);
       }
     });
