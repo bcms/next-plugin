@@ -2,6 +2,8 @@ import type { BCMSMediaParsed } from '@becomes/cms-client/types';
 import type { BCMSMostImageProcessorProcessOptions } from '@becomes/cms-most/types';
 import { createBcmsImageHandler } from '@becomes/cms-most/frontend';
 import * as React from 'react';
+import { BCMSImageConfig } from './_config';
+import { output } from '@becomes/cms-most/frontend/_output-path';
 
 interface Props {
   media: BCMSMediaParsed;
@@ -48,7 +50,7 @@ const BCMSImage: React.FC<Props> = ({
   return (
     <div
       id={id}
-      className={className}
+      className={`bcmsImage ${className || ''}`}
       style={style}
       ref={container}
       data-bcms-img-w={srcSet[2]}
@@ -57,43 +59,46 @@ const BCMSImage: React.FC<Props> = ({
       data-bcms-img-ops={handler.optionString}
       data-bcms-img-idx={srcSet[4]}
     >
-      <img
-        src={`${process.env.NEXT_PUBLIC_BCMS_ORIGIN || ''}/api/media/${
-          media._id
-        }/bin/${process.env.NEXT_PUBLIC_KEY_ID}?ops=${
-          handler.optionString
-        }&idx=${srcSet[4]}`}
-        alt={media.alt_text}
-        width={media.width}
-        height={media.height}
-      />
-      {/* <Image
-        src={'/bcms-media' + media.src}
-        alt={media.alt_text}
-        objectFit="cover"
-        width={srcSet[2].toFixed(0)}
-        height={srcSet[3].toFixed(0)}
-      /> */}
-      {/* {handler.parsable ? (
+      {BCMSImageConfig.localeImageProcessing ? (
+        <>
+          {handler.parsable ? (
+            <picture>
+              <source srcSet={srcSet[0]} />
+              <source srcSet={srcSet[1]} />
+              <img
+                data-bcms-image={handler.optionString + ';' + media.src}
+                src={output + media.src}
+                alt={media.alt_text}
+                width={srcSet[2]}
+                height={srcSet[3]}
+              />
+            </picture>
+          ) : (
+            <img
+              src={srcSet[0]}
+              alt={media.alt_text}
+              width={media.width}
+              height={media.height}
+            />
+          )}
+        </>
+      ) : (
         <picture>
-          <source srcSet={'/api' + srcSet[0]} />
-          <source srcSet={'/api' + srcSet[1]} />
+          <source
+            srcSet={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}&webp=true`}
+          />
+          <source
+            srcSet={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}`}
+          />
           <img
             data-bcms-image={handler.optionString + ';' + media.src}
-            src={output + media.src}
+            src={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}`}
             alt={media.alt_text}
             width={srcSet[2]}
             height={srcSet[3]}
           />
         </picture>
-      ) : (
-        <img
-          src={srcSet[0]}
-          alt={media.alt_text}
-          width={media.width}
-          height={media.height}
-        />
-      )} */}
+      )}
     </div>
   );
 };

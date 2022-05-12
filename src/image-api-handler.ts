@@ -2,14 +2,15 @@ import * as fs from 'fs';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getBcmsMost } from './main';
 
-export function createBcmsApiImageHandler(): (
-  req: NextApiRequest,
-  res: NextApiResponse,
-) => Promise<void> {
+export function createBcmsApiImageHandler({
+  outputBase,
+}: {
+  outputBase?: string[];
+}): (req: NextApiRequest, res: NextApiResponse) => Promise<void> {
   return async (req, res) => {
     const most = getBcmsMost();
     const uri = '/' + `${req.url}`.split('/').slice(3).join('/');
-    const result = await most.imageProcessor.middlewareHelper(uri);
+    const result = await most.imageProcessor.middlewareHelper(uri, outputBase);
     if (result.exist) {
       res.statusCode = 200;
       res.setHeader('Content-Type', result.mimetype as string);
