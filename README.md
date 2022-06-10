@@ -94,6 +94,65 @@ createBcmsNextPlugin();
 /public/api/bcms-images
 ```
 
+## Getting the BCMS data
+
+There are 2 main ways in which you can get data in Next page. First is by using [BCMS Client methods](https://github.com/becomesco/cms-client) with `getBcmsClient()` function and the other is by using [BCMS Most](https://github.com/becomesco/cms-most) with `getBcmsMost()` function.
+
+## Getting data using BCMS Client
+
+This approach is very simple and easy to understand. For example, if in the BCMS we have an entry with slug _home_, located in _pages_ template, we can get data for this entry like shown in the code snippet bellow:
+
+```tsx
+import type { GetServerSideProps } from 'next';
+import { getBcmsClient } from 'next-plugin-bcms';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const client = getBcmsClient();
+
+  const entry = await client.entry.get({
+    template: 'pages',
+    entry: 'home',
+  });
+
+  return { props: { entry } };
+};
+
+// ... Page component
+```
+
+You can also enable client caching in `bcms.config.js` to speed up responses.
+
+> bcms.config.js
+
+```js
+module.exports = createBcmsMostConfig({
+  // ...
+  enableClientCache: true,
+});
+```
+
+## Getting data using BCMS Most
+
+This approach is a little bit more difficult but it will use local copy of the BCMS data provided by the BCMS Most. This means that there is no added latency for fetching data because all required data is already in memory. Example from previous section would look like this:
+
+```tsx
+import type { GetServerSideProps } from 'next';
+import { getBcmsMost } from 'next-plugin-bcms';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const most = getBcmsMost();
+
+  const entry = await most.content.entry.find(
+    'pages',
+    async (pagesItem) => pagesItem.meta.en.slug === 'home',
+  );
+
+  return { props: { entry } };
+};
+
+// ... Page component
+```
+
 ## Development
 
 - Install dependencies: `npm i`,
