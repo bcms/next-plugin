@@ -1,8 +1,7 @@
 import type { BCMSMediaParsed } from '@becomes/cms-client/types';
 import type { BCMSMostImageProcessorProcessOptions } from '@becomes/cms-most/types';
-import { createBcmsImageHandler } from '@becomes/cms-most/frontend';
+import { BCMSImageConfig, createBcmsImageHandler } from '@becomes/cms-most/frontend';
 import * as React from 'react';
-import { BCMSImageConfig } from './_config';
 import { output } from '@becomes/cms-most/frontend/_output-path';
 
 interface Props {
@@ -85,14 +84,14 @@ const BCMSImage: React.FC<Props> = ({
       ) : (
         <picture>
           <source
-            srcSet={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}&webp=true`}
+            srcSet={srcSet[0]}
           />
           <source
-            srcSet={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}`}
+            srcSet={srcSet[1]}
           />
           <img
             data-bcms-image={handler.optionString + ';' + media.src}
-            src={`${BCMSImageConfig.cmsOrigin}/api/media/${media._id}/bin/${BCMSImageConfig.publicApiKeyId}?ops=${handler.optionString}&idx=${srcSet[4]}`}
+            src={srcSet[1]}
             alt={media.alt_text}
             width={srcSet[2]}
             height={srcSet[3]}
