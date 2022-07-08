@@ -1,6 +1,9 @@
 import type { BCMSMediaParsed } from '@becomes/cms-client/types';
 import type { BCMSMostImageProcessorProcessOptions } from '@becomes/cms-most/types';
-import { createBcmsImageHandler } from '@becomes/cms-most/frontend';
+import {
+  BCMSImageConfig,
+  createBcmsImageHandler,
+} from '@becomes/cms-most/frontend';
 import * as React from 'react';
 import { output } from '@becomes/cms-most/frontend/_output-path';
 
@@ -67,7 +70,11 @@ const BCMSImage: React.FC<Props> = ({
             <source srcSet={srcSet[1]} />
             <img
               data-bcms-image={handler.optionString + ';' + media.src}
-              src={output + media.src}
+              src={
+                BCMSImageConfig.localeImageProcessing
+                  ? output + media.src
+                  : srcSet[1]
+              }
               alt={media.alt_text}
               width={srcSet[2]}
               height={srcSet[3]}
