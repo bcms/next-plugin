@@ -30,7 +30,7 @@ const BCMSContentManager: React.FC<Props> = (props) => {
     >
       {props.items.map((_item, _itemIdx) => {
         return (
-          <>
+          <div key={_itemIdx}>
             {_item instanceof Array ? (
               <>
                 {_item.map((item, itemIdx) => {
@@ -46,13 +46,12 @@ const BCMSContentManager: React.FC<Props> = (props) => {
               </>
             ) : (
               <BCMSContentItem
-                key={_itemIdx}
                 item={_item}
                 components={props.widgetComponents}
                 nodeParser={props.nodeParser}
               />
             )}
-          </>
+          </div>
         );
       })}
     </div>
