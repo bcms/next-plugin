@@ -66,13 +66,25 @@ const BCMSImage: React.FC<Props> = ({
       <>
         {handler.parsable ? (
           <picture>
-            <source srcSet={srcSet[0]} />
-            <source srcSet={srcSet[1]} />
+            <source
+              srcSet={
+                BCMSImageConfig.localeImageProcessing
+                  ? '/api' + srcSet[0]
+                  : srcSet[0]
+              }
+            />
+            <source
+              srcSet={
+                BCMSImageConfig.localeImageProcessing
+                  ? '/api' + srcSet[1]
+                  : srcSet[1]
+              }
+            />
             <img
               data-bcms-image={handler.optionString + ';' + media.src}
               src={
                 BCMSImageConfig.localeImageProcessing
-                  ? output + media.src
+                  ? '/api' + output + media.src
                   : srcSet[1]
               }
               alt={media.alt_text}
