@@ -1,6 +1,6 @@
 {
   "name": "next-plugin-bcms",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Plugin for BCMS.",
   "author": "becomes.co",
   "license": "MIT",
@@ -27,15 +27,15 @@
     "t": "ts-node src/test.ts"
   },
   "peerDependencies": {
-    "@becomes/cms-client": ">=3.4.0",
-    "@becomes/cms-most": ">=2.9.0",
+    "@becomes/cms-client": ">=3.4.1",
+    "@becomes/cms-most": ">=2.9.1",
     "next": "^14.2.3",
     "react": "^18.3.1"
   },
   "devDependencies": {
     "@banez/npm-tool": "^1.0.1",
-    "@becomes/cms-client": "^3.4.0",
-    "@becomes/cms-most": "^2.9.0",
+    "@becomes/cms-client": "^3.4.1",
+    "@becomes/cms-most": "^2.9.1",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
