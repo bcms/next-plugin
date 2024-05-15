@@ -42,14 +42,14 @@ export function createBcmsNextPlugin(): BCMSNextPlugin {
     const fs = createFS({
       base: process.cwd(),
     });
-    // fs.exist('bcms').then(async (result) => {
-    //   if (!result) {
-    //     await bcmsMost.template.pull();
-    //     await bcmsMost.content.pull();
-    //     await bcmsMost.media.pull();
-    //     await bcmsMost.typeConverter.pull();
-    //   }
-    // });
+    fs.exist('bcms').then(async (result) => {
+      if (!result) {
+        await bcmsMost.template.pull();
+        await bcmsMost.content.pull();
+        await bcmsMost.media.pull();
+        await bcmsMost.typeConverter.pull();
+      }
+    });
     fs.exist('bcms.routes.js', true).then(async (result) => {
       if (result) {
         const routes = await import(path.join(process.cwd(), 'bcms.routes.js'));
