@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "jsx": "react",
+    "target": "ES2020",
+    "outDir": "./dist/cjs",
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "Node",
+    "paths": {
+      "next-plugin-bcms": ["./src"],
+      "next-plugin-bcms/*": ["./src/*"]
+    }
+  },
+  "typedocOptions": {
+    "entryPoints": ["src/main.ts", "src/types/index.ts"],
+    "name": "BCMS | Client",
+    "out": "doc"
+  },
+  "include": ["src"]
+}

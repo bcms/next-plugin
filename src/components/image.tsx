@@ -4,7 +4,7 @@ import {
   BCMSImageConfig,
   createBcmsImageHandler,
 } from '@becomes/cms-most/frontend';
-import * as React from 'react';
+import React from 'react';
 import { output } from '@becomes/cms-most/frontend/_output-path';
 
 interface Props {

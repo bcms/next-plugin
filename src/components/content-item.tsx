@@ -2,8 +2,8 @@ import {
   BCMSEntryContentNodeType,
   BCMSEntryContentParsedItem,
 } from '@becomes/cms-client/types';
-import * as React from 'react';
-import type { BCMSWidgetComponents } from './content-manager';
+import React from 'react';
+import type { BCMSWidgetComponents } from 'next-plugin-bcms/components/content-manager';
 
 interface Props {
   item: BCMSEntryContentParsedItem;

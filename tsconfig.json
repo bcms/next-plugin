@@ -1,21 +1,27 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ES2020",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "ES2020",
     "jsx": "react",
     "sourceMap": false,
-    "outDir": "./dist",
+    "outDir": "./dist/mjs",
     "baseUrl": "./",
     "rootDir": "./src",
     "incremental": false,
     "strict": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "paths": {
+      "next-plugin-bcms": ["./src"],
+      "next-plugin-bcms/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

@@ -1,1 +1,1 @@
-export * from './main';
+export * from 'next-plugin-bcms/types/main';

@@ -4,9 +4,12 @@
   "description": "Plugin for BCMS.",
   "author": "becomes.co",
   "license": "MIT",
-  "main": "index.js",
+  "main": "index.cjs",
+  "module": "index.mjs",
+  "types": "index.d.ts",
   "scripts": {
-    "build:ts": "npm run lint && tsc -p .",
+    "build:ts:cjs": "npm run lint && tsc -p ./tsconfig.commonjs.json",
+    "build:ts:mjs": "npm run lint && tsc -p .",
     "build:gatsby": "tsc -p tsconfig.gatsby.json",
     "bundle": "npm-tool --bundle",
     "build": "npm-tool --build",
@@ -24,15 +27,15 @@
     "t": "ts-node src/test.ts"
   },
   "peerDependencies": {
-    "@becomes/cms-client": ">=3.3.0",
-    "@becomes/cms-most": ">=2.4.0",
+    "@becomes/cms-client": ">=3.4.0",
+    "@becomes/cms-most": ">=2.9.0",
     "next": "^14.2.3",
     "react": "^18.3.1"
   },
   "devDependencies": {
     "@banez/npm-tool": "^1.0.1",
-    "@becomes/cms-client": "file:client.tgz",
-    "@becomes/cms-most": "file:most.tgz",
+    "@becomes/cms-client": "^3.4.0",
+    "@becomes/cms-most": "^2.9.0",
     "@types/node": "^20.12.12",
     "@types/react": "^18.3.2",
     "@typescript-eslint/eslint-plugin": "^7.9.0",

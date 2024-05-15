@@ -1,9 +1,12 @@
-import * as path from 'path';
+import path from 'path';
 import { createFS } from '@banez/fs';
 import type { BCMSClient } from '@becomes/cms-client/types';
-import { createBcmsMost } from '@becomes/cms-most';
+import { createBcmsMost } from '@becomes/cms-most/main';
 import type { BCMSMost } from '@becomes/cms-most/types';
-import type { BCMSNextPlugin, BCMSNextPluginApiHandler } from './types';
+import type {
+  BCMSNextPlugin,
+  BCMSNextPluginApiHandler,
+} from 'next-plugin-bcms/types';
 
 let nextPlugin: BCMSNextPlugin;
 

@@ -1,6 +1,6 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getBcmsMost } from './main';
+import { getBcmsMost } from 'next-plugin-bcms/main';
 
 export function createBcmsApiImageHandler({
   outputBase,

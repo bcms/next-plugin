@@ -2,8 +2,8 @@ import type {
   BCMSEntryContentParsedItem,
   BCMSPropRichTextDataParsed,
 } from '@becomes/cms-client/types';
-import * as React from 'react';
-import BCMSContentItem from './content-item';
+import React from 'react';
+import BCMSContentItem from 'next-plugin-bcms/components/content-item';
 
 export interface BCMSWidgetComponents {
   [bcmsWidgetName: string]: React.FC<{
